@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Live Signals – Fixed Version</title>
+<title>Gold Live Signals – Final Fixed</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/technicalindicators@3.1.0/dist/technicalindicators.min.js"></script>
 <style>
@@ -85,7 +85,7 @@
 
 </div>
 
-<footer>Private tool • apised.com + TradingView + NewsAPI + public X mirror • For personal/educational use only</footer>
+<footer>Private tool • apised.com + TradingView + NewsAPI + public X mirror • Personal/educational use only</footer>
 
 <script>
 // ────────────────────────────────────────────────
@@ -210,7 +210,7 @@ function loadTVChart() {
 }
 
 // ────────────────────────────────────────────────
-// Price Fetch – improved parsing
+// Price Fetch – robust parsing for apised structure
 // ────────────────────────────────────────────────
 async function fetchPrice() {
   try {
@@ -220,37 +220,44 @@ async function fetchPrice() {
     });
 
     if (!res.ok) {
-      throw new Error(`HTTP ${res.status} – check API key / credits / endpoint`);
+      throw new Error(`HTTP ${res.status} – check key/credits`);
     }
 
     const json = await res.json();
-    console.log("API RESPONSE:", JSON.stringify(json, null, 2)); // debug – open F12 → Console
+    console.log("API RESPONSE:", JSON.stringify(json, null, 2)); // Open F12 → Console to see this!
 
-    // ─── Very flexible price extraction ───────────────────────────────
+    // ─── Find gold object ─────────────────────────────────────────────
     let gold = null;
 
-    // Common paths
-    if (json.rates) gold = json.rates[SYMBOL] || json.rates.XAU;
-    if (!gold && json.data?.rates) gold = json.data.rates[SYMBOL] || json.data.rates.XAU;
-    if (!gold && json[SYMBOL]) gold = json[SYMBOL];
-    if (!gold && json.price) gold = json.price;
-    if (!gold && json.data?.[SYMBOL]) gold = json.data[SYMBOL];
+    // Try nested structures common in apised/metals APIs
+    if (json.data?.rates?.XAU) gold = json.data.rates.XAU;
+    else if (json.rates?.XAU) gold = json.rates.XAU;
+    else if (json[SYMBOL]) gold = json[SYMBOL];
+    else if (json.data?.[SYMBOL]) gold = json.data[SYMBOL];
 
-    // Extract numeric value from gold object or directly
+    // Extract current price with fallbacks
     let curr = parseFloat(
-      gold?.current || gold?.price || gold?.rate || gold?.last || gold?.value ||
+      gold?.current ||
+      gold?.price   ||
+      gold?.rate    ||
+      gold?.last    ||
+      gold?.value   ||
+      gold?.spot    ||
       (typeof gold === 'number' ? gold : 0)
     );
 
     if (!curr || isNaN(curr)) {
-      console.warn("Could not find numeric price. Gold object:", gold);
-      throw new Error("No valid price in response – see console for raw data");
+      console.warn("No numeric price found. Gold object:", gold);
+      throw new Error("No valid price in response – see console (F12) for raw JSON");
     }
 
-    // Previous value fallback
+    // Previous/open/change fallback
     let prev = parseFloat(
-      gold?.prev || gold?.previous || gold?.open || gold?.change?.previous ||
-      (typeof gold === 'object' && gold.change ? curr - gold.change : curr)
+      gold?.prev     ||
+      gold?.previous ||
+      gold?.open     ||
+      gold?.change?.previous ||
+      (gold?.current && gold?.change ? gold.current - gold.change : curr)
     );
 
     const chg = prev && !isNaN(prev) ? ((curr - prev) / prev * 100) : 0;
@@ -266,13 +273,13 @@ async function fetchPrice() {
     updateCombinedDisplay(curr);
     statusEl.textContent = `Updated ${new Date().toLocaleTimeString()}`;
   } catch (e) {
-    console.error("Fetch error:", e);
-    statusEl.textContent = `Error: ${e.message} (check console F12)`;
+    console.error("Fetch failed:", e);
+    statusEl.textContent = `Error: ${e.message} (F12 → Console for details)`;
   }
 }
 
 // ────────────────────────────────────────────────
-// Technical Signal
+// Technical Signal (unchanged)
 // ────────────────────────────────────────────────
 function generateTechSignal(curr) {
   const cfg = TF_SETTINGS[currentTF];
