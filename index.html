@@ -3,43 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Live – Multi-TF + Sentiment + Alerts (Fixed)</title>
+<title>Gold Live Signals – Fixed Version</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/technicalindicators@3.1.0/dist/technicalindicators.min.js"></script>
 <style>
   body { margin:0; background:#0a0a14; color:#ddd; font-family:Arial,sans-serif; font-size:13px; }
   header { background:#111; padding:8px; text-align:center; border-bottom:1px solid #222; }
   h1 { margin:0; font-size:1.3rem; color:#ffcc00; }
-  #status { font-size:0.7rem; color:#88f; }
+  #status { font-size:0.75rem; color:#88f; }
   .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:10px; padding:10px; max-width:1600px; margin:0 auto; }
-  .card { background:#111; border:1px solid #333; border-radius:6px; padding:10px; }
-  #price { font-size:2.4rem; font-weight:bold; color:#ffcc00; text-align:center; }
-  #change { font-size:1rem; }
+  .card { background:#111; border:1px solid #333; border-radius:6px; padding:12px; }
+  #price { font-size:2.6rem; font-weight:bold; color:#ffcc00; text-align:center; }
+  #change { font-size:1.1rem; }
   .pos { color:#0f8; } .neg { color:#f44; }
-  .signal { font-size:1.7rem; font-weight:bold; padding:10px; text-align:center; border-radius:6px; margin:8px 0; min-height:2.2rem; }
+  .signal { font-size:1.9rem; font-weight:bold; padding:12px; text-align:center; border-radius:8px; margin:10px 0; min-height:2.4rem; }
   .buy  { background:#004400; color:#8f8; border:1px solid #0c0; }
   .sell { background:#440000; color:#f88; border:1px solid #c00; }
   .neu  { background:#222; color:#aaf; }
   .warning { background:#4a3c00; color:#ffcc66; border:1px solid #cc9900; }
-  #trend,#entry,#tpsl { font-size:0.95rem; line-height:1.3; }
-  .tv-chart { height:320px; }
-  .news-item, .tweet-item { margin:8px 0; padding:8px; border-left:3px solid #444; background:#1a1a2e; border-radius:4px; position:relative; }
-  .sentiment-badge { position:absolute; top:8px; right:8px; font-size:1.1rem; font-weight:bold; padding:2px 8px; border-radius:4px; }
+  #trend, #entry, #tpsl { font-size:1rem; line-height:1.4; }
+  .tv-chart { height:340px; }
+  .news-item, .tweet-item { margin:10px 0; padding:10px; border-left:3px solid #444; background:#1a1a2e; border-radius:6px; position:relative; }
+  .sentiment-badge { position:absolute; top:10px; right:10px; font-size:1.2rem; font-weight:bold; padding:4px 10px; border-radius:6px; }
   .bullish { background:#004d00; color:#88ff88; }
   .bearish { background:#4d0000; color:#ff8888; }
   .neutral  { background:#222244; color:#bbbbff; }
-  #tf-select { margin:8px 0; padding:6px; background:#222; color:#ffcc00; border:1px solid #444; }
-  #tf-info { font-size:0.9rem; color:#aaa; margin-top:4px; }
-  #combined-sent { font-size:1.05rem; font-weight:bold; margin:6px 0; padding:6px; border-radius:6px; text-align:center; }
-  #session-note { font-size:0.85rem; color:#88f; margin:6px 0; }
-  #notify-status { font-size:0.8rem; color:#aaa; margin-top:4px; }
-  footer { text-align:center; padding:8px; font-size:0.65rem; color:#555; }
+  #tf-select { margin:10px 0; padding:8px; background:#222; color:#ffcc00; border:1px solid #444; width:100%; }
+  #tf-info { font-size:0.95rem; color:#aaa; margin-top:6px; }
+  #combined-sent { font-size:1.1rem; font-weight:bold; margin:8px 0; padding:8px; border-radius:6px; text-align:center; }
+  #session-note { font-size:0.9rem; color:#88f; margin:8px 0; }
+  #notify-status { font-size:0.85rem; color:#aaa; margin-top:6px; }
+  footer { text-align:center; padding:12px; font-size:0.7rem; color:#555; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Gold (XAU/USD) Live – Multi-TF + Alerts</h1>
+  <h1>Gold (XAU/USD) Live Signals</h1>
   <div id="status">Connecting…</div>
 </header>
 
@@ -55,14 +55,14 @@
   </div>
 
   <div class="card">
-    <label>Analysis Time Frame:</label>
+    <label>Time Frame:</label>
     <select id="tf-select">
       <option value="short">M5–M15 (Scalping)</option>
-      <option value="medium" selected>M30–H1 (Day Trading – Recommended)</option>
+      <option value="medium" selected>M30–H1 (Recommended)</option>
       <option value="long">H4 (Swing)</option>
     </select>
     <div id="tf-info">Using: M30–H1 – Balanced & consistent</div>
-    <div id="session-note">Best window: London-NY overlap (~13:00–17:00 UTC)</div>
+    <div id="session-note">Best volatility: London-NY overlap (~13:00–17:00 UTC)</div>
     <div id="notify-status">Notifications: not requested yet</div>
 
     <div id="signal" class="signal neu">Waiting for data…</div>
@@ -78,21 +78,21 @@
     <div id="news-list"></div>
 
     <br>
-    <strong>Recent X Posts (via public mirror)</strong> <span id="x-status">(updating…)</span>
+    <strong>Recent X Posts (public mirror)</strong> <span id="x-status">(updating…)</span>
     <div id="x-sentiment-auto">X Sentiment: Calculating…</div>
     <div id="x-posts-list"></div>
   </div>
 
 </div>
 
-<footer>Private tool • apised + TradingView + NewsAPI + Public X mirror • Notifications supported</footer>
+<footer>Private tool • apised.com + TradingView + NewsAPI + public X mirror • For personal/educational use only</footer>
 
 <script>
 // ────────────────────────────────────────────────
 // CONFIG
 // ────────────────────────────────────────────────
 const API_KEY     = "sk_d6D036264d1491680e9A9Fa528e1Ab1CE796dBe627D625A0";
-const BASE_URL    = "https://metals.g.apised.com";  // confirmed endpoint base
+const BASE_URL    = "https://metals.g.apised.com";
 const SYMBOL      = "XAU";
 const POLL_MS     = 10000;
 
@@ -154,20 +154,17 @@ async function requestNotificationPermission() {
     notifyStatus.textContent = "Notifications not supported";
     return;
   }
-
   if (Notification.permission === "granted") {
     notificationPermission = "granted";
     notifyStatus.textContent = "Notifications enabled";
     return;
   }
-
   if (Notification.permission !== "denied") {
     try {
       const permission = await Notification.requestPermission();
       notificationPermission = permission;
       notifyStatus.textContent = permission === "granted" ? "Notifications enabled" : "Notifications blocked";
     } catch (err) {
-      console.error("Notification permission error:", err);
       notifyStatus.textContent = "Permission error";
     }
   }
@@ -178,8 +175,8 @@ function sendSignalNotification(signal, price, sentimentScore) {
   if (notificationPermission !== "granted") return;
   if (lastNotifiedSig === signal) return;
 
-  const title = `Gold Signal Alert: ${signal}`;
-  const body = `Price: $${price.toFixed(2)}\nSentiment: ${(sentimentScore * 100).toFixed(0)}%\nTF: ${TF_SETTINGS[currentTF].desc.split(' (')[0]}`;
+  const title = `Gold Signal: ${signal}`;
+  const body = `$${price.toFixed(2)} | Sentiment: ${(sentimentScore*100).toFixed(0)}% | ${TF_SETTINGS[currentTF].desc.split(' (')[0]}`;
   const icon = signal === "BUY" ? "https://img.icons8.com/fluency/96/buy.png" : "https://img.icons8.com/fluency/96/sell.png";
 
   new Notification(title, { body, icon });
@@ -213,7 +210,7 @@ function loadTVChart() {
 }
 
 // ────────────────────────────────────────────────
-// Price Fetch + Signal
+// Price Fetch – improved parsing
 // ────────────────────────────────────────────────
 async function fetchPrice() {
   try {
@@ -223,19 +220,40 @@ async function fetchPrice() {
     });
 
     if (!res.ok) {
-      throw new Error(`API error: ${res.status} ${res.statusText}`);
+      throw new Error(`HTTP ${res.status} – check API key / credits / endpoint`);
     }
 
     const json = await res.json();
-    console.log("API response:", json); // debug
+    console.log("API RESPONSE:", JSON.stringify(json, null, 2)); // debug – open F12 → Console
 
-    // Flexible parsing - try multiple possible field names
-    const gold = json.rates?.[SYMBOL] || json.data?.rates?.[SYMBOL] || json;
-    const curr = parseFloat(gold.current || gold.price || gold.rate || gold.value || 0);
-    if (!curr) throw new Error("No valid price found in response");
+    // ─── Very flexible price extraction ───────────────────────────────
+    let gold = null;
 
-    const prev = parseFloat(gold.prev || gold.previous || gold.open || curr);
-    const chg  = prev ? ((curr - prev) / prev * 100) : 0;
+    // Common paths
+    if (json.rates) gold = json.rates[SYMBOL] || json.rates.XAU;
+    if (!gold && json.data?.rates) gold = json.data.rates[SYMBOL] || json.data.rates.XAU;
+    if (!gold && json[SYMBOL]) gold = json[SYMBOL];
+    if (!gold && json.price) gold = json.price;
+    if (!gold && json.data?.[SYMBOL]) gold = json.data[SYMBOL];
+
+    // Extract numeric value from gold object or directly
+    let curr = parseFloat(
+      gold?.current || gold?.price || gold?.rate || gold?.last || gold?.value ||
+      (typeof gold === 'number' ? gold : 0)
+    );
+
+    if (!curr || isNaN(curr)) {
+      console.warn("Could not find numeric price. Gold object:", gold);
+      throw new Error("No valid price in response – see console for raw data");
+    }
+
+    // Previous value fallback
+    let prev = parseFloat(
+      gold?.prev || gold?.previous || gold?.open || gold?.change?.previous ||
+      (typeof gold === 'object' && gold.change ? curr - gold.change : curr)
+    );
+
+    const chg = prev && !isNaN(prev) ? ((curr - prev) / prev * 100) : 0;
 
     prices.push(curr);
     if (prices.length > 400) prices.shift();
@@ -248,13 +266,13 @@ async function fetchPrice() {
     updateCombinedDisplay(curr);
     statusEl.textContent = `Updated ${new Date().toLocaleTimeString()}`;
   } catch (e) {
-    console.error("Price fetch error:", e);
-    statusEl.textContent = `Error: ${e.message} (check key/credits/endpoint)`;
+    console.error("Fetch error:", e);
+    statusEl.textContent = `Error: ${e.message} (check console F12)`;
   }
 }
 
 // ────────────────────────────────────────────────
-// Technical Signal (TF-aware)
+// Technical Signal
 // ────────────────────────────────────────────────
 function generateTechSignal(curr) {
   const cfg = TF_SETTINGS[currentTF];
@@ -265,9 +283,9 @@ function generateTechSignal(curr) {
     return;
   }
 
-  const emaFast = technicalindicators.EMA.calculate({ period: cfg.emaFast, values: prices }).pop();
-  const emaSlow = technicalindicators.EMA.calculate({ period: cfg.emaSlow, values: prices }).pop();
-  const rsi     = technicalindicators.RSI.calculate({ period: cfg.rsiPeriod, values: prices }).pop();
+  const emaFast = technicalindicators.EMA.calculate({period: cfg.emaFast, values:prices}).pop();
+  const emaSlow = technicalindicators.EMA.calculate({period: cfg.emaSlow, values:prices}).pop();
+  const rsi     = technicalindicators.RSI.calculate({period: cfg.rsiPeriod, values:prices}).pop();
 
   let sig = "NEUTRAL", cls = "neu", trend = "Neutral";
 
@@ -276,7 +294,7 @@ function generateTechSignal(curr) {
     trend = bull ? "Bull ↑" : "Bear ↓";
     trendEl.textContent = `Trend: ${trend}`;
 
-    const prevBull = prices[prices.length - 2] > emaSlow;
+    const prevBull = prices[prices.length-2] > emaSlow;
 
     const rsiLow  = currentTF === "long" ? 35 : currentTF === "medium" ? 38 : 40;
     const rsiHigh = currentTF === "long" ? 65 : currentTF === "medium" ? 62 : 60;
@@ -298,12 +316,12 @@ function generateTechSignal(curr) {
 }
 
 function setLevels(entry, dir) {
-  const vol = prices.slice(-20).reduce((m, v, i, a) => i ? Math.max(m, Math.abs(v - a[i - 1])) : m, 0) * (currentTF === "long" ? 8 : 12);
-  const risk = vol || entry * 0.007;
+  const vol = prices.slice(-20).reduce((m,v,i,a)=>i?Math.max(m,Math.abs(v-a[i-1])):m,0) * (currentTF === "long" ? 8 : 12);
+  const risk = vol || entry*0.007;
   const rr = currentTF === "long" ? 3 : 2;
 
-  let sl = dir === "buy" ? entry - risk : entry + risk;
-  let tp = dir === "buy" ? entry + risk * rr : entry - risk * rr;
+  let sl = dir==="buy" ? entry - risk : entry + risk;
+  let tp = dir==="buy" ? entry + risk*rr : entry - risk*rr;
 
   entryEl.textContent = `Entry ~ $${entry.toFixed(2)}`;
   tpslEl.innerHTML = `SL $${sl.toFixed(2)} • TP $${tp.toFixed(2)} (RR 1:${rr})`;
@@ -325,9 +343,9 @@ function getSentimentScore(text) {
 }
 
 function getSentimentClass(score) {
-  if (score > SENT_BULL_THRESHOLD) return { class: 'bullish', text: 'Bullish' };
-  if (score < SENT_BEAR_THRESHOLD) return { class: 'bearish', text: 'Bearish' };
-  return { class: 'neutral', text: 'Neutral' };
+  if (score > SENT_BULL_THRESHOLD) return {class:'bullish', text:'Bullish'};
+  if (score < SENT_BEAR_THRESHOLD) return {class:'bearish', text:'Bearish'};
+  return {class:'neutral', text:'Neutral'};
 }
 
 // ────────────────────────────────────────────────
@@ -336,32 +354,27 @@ function getSentimentClass(score) {
 async function fetchNews() {
   try {
     newsStat.textContent = "(fetching…)";
-    const today = new Date();
-    const fromDate = new Date(today);
-    fromDate.setDate(today.getDate() - 7);
-
+    const fromDate = new Date(Date.now() - 7*24*60*60*1000).toISOString().split('T')[0];
     const q = '("gold price" OR XAUUSD OR "gold market" OR "XAU/USD")';
-    const from = fromDate.toISOString().split('T')[0];
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&from=${from}&language=en&sortBy=publishedAt&pageSize=6&apiKey=${NEWS_API_KEY}`;
+    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&from=${fromDate}&language=en&sortBy=publishedAt&pageSize=6&apiKey=${NEWS_API_KEY}`;
 
     const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const data = await res.json();
-    if (data.status !== "ok") throw new Error(data.message || "API error");
+    if (data.status !== "ok") throw new Error(data.message || "NewsAPI error");
 
     newsList.innerHTML = "";
-    let totalScore = 0;
-    let count = 0;
+    let total = 0, count = 0;
 
-    if (data.articles?.length > 0) {
+    if (data.articles?.length) {
       data.articles.forEach(a => {
-        const score = getSentimentScore(a.title + " " + (a.description || ""));
+        const score = getSentimentScore(a.title + " " + (a.description||""));
         const sent = getSentimentClass(score);
-        totalScore += score;
+        total += score;
         count++;
 
-        const time = new Date(a.publishedAt).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+        const time = new Date(a.publishedAt).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
         const div = document.createElement('div');
         div.className = 'news-item';
         div.innerHTML = `
@@ -372,23 +385,22 @@ async function fetchNews() {
         newsList.appendChild(div);
       });
 
-      lastNewsScore = count > 0 ? totalScore / count : 0;
-      const overall = getSentimentClass(lastNewsScore);
-      overallNews.textContent = `News Sentiment: ${overall.text} (${lastNewsScore.toFixed(2)})`;
-      overallNews.className = overall.class;
+      lastNewsScore = count ? total / count : 0;
+      const ov = getSentimentClass(lastNewsScore);
+      overallNews.textContent = `News: ${ov.text} (${lastNewsScore.toFixed(2)})`;
+      overallNews.className = ov.class;
     } else {
-      newsList.innerHTML = "<p>No recent gold news found.</p>";
+      newsList.innerHTML = "<p>No recent news</p>";
       lastNewsScore = 0;
-      overallNews.textContent = "News Sentiment: —";
+      overallNews.textContent = "News: —";
       overallNews.className = "neutral";
     }
 
     newsStat.textContent = `(updated ${new Date().toLocaleTimeString()})`;
-    updateCombinedDisplay(prices.length > 0 ? prices[prices.length - 1] : 0);
-  } catch (e) {
-    console.error("News fetch error:", e);
+    updateCombinedDisplay(prices.length ? prices[prices.length-1] : 0);
+  } catch(e) {
     newsStat.textContent = `News error: ${e.message}`;
-    overallNews.textContent = "News Sentiment: Error";
+    overallNews.textContent = "News: Error";
     overallNews.className = "neutral";
   }
 }
@@ -399,33 +411,30 @@ async function fetchNews() {
 async function fetchXPosts() {
   try {
     xStatus.textContent = "(fetching…)";
-
-    const proxyUrl = X_RSS_PROXY + encodeURIComponent(X_RSS_URL);
-    const res = await fetch(proxyUrl);
+    const res = await fetch(X_RSS_PROXY + encodeURIComponent(X_RSS_URL));
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const text = await res.text();
     const parser = new DOMParser();
     const doc = parser.parseFromString(text, "text/xml");
-
     const items = doc.querySelectorAll("item");
+
     xPostsList.innerHTML = "";
-    let totalScore = 0;
-    let count = 0;
+    let total = 0, count = 0;
 
-    if (items.length === 0) throw new Error("No posts found in feed");
+    if (items.length === 0) throw new Error("No posts");
 
-    Array.from(items).slice(0, 8).forEach(item => {
+    Array.from(items).slice(0,8).forEach(item => {
       const title = item.querySelector("title")?.textContent || "";
       const link = item.querySelector("link")?.textContent || "#";
       const pubDate = item.querySelector("pubDate")?.textContent || "";
 
       const score = getSentimentScore(title);
       const sent = getSentimentClass(score);
-      totalScore += score;
+      total += score;
       count++;
 
-      const time = pubDate ? new Date(pubDate).toLocaleString([], { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : "—";
+      const time = pubDate ? new Date(pubDate).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) : "—";
 
       const div = document.createElement('div');
       div.className = 'tweet-item';
@@ -437,53 +446,47 @@ async function fetchXPosts() {
       xPostsList.appendChild(div);
     });
 
-    lastXScore = count > 0 ? totalScore / count : 0;
-    const xSent = getSentimentClass(lastXScore);
-    xSentAuto.textContent = `X Sentiment: ${xSent.text} (${lastXScore.toFixed(2)})`;
-    xSentAuto.className = xSent.class;
+    lastXScore = count ? total / count : 0;
+    const xs = getSentimentClass(lastXScore);
+    xSentAuto.textContent = `X: ${xs.text} (${lastXScore.toFixed(2)})`;
+    xSentAuto.className = xs.class;
 
     xStatus.textContent = `(updated ${new Date().toLocaleTimeString()})`;
-    updateCombinedDisplay(prices.length > 0 ? prices[prices.length - 1] : 0);
-  } catch (e) {
-    console.error("X fetch error:", e);
-    xStatus.textContent = `X fetch error: ${e.message} (Nitter mirror may be down)`;
-    xSentAuto.textContent = "X Sentiment: Error";
+    updateCombinedDisplay(prices.length ? prices[prices.length-1] : 0);
+  } catch(e) {
+    xStatus.textContent = `X error: ${e.message}`;
+    xSentAuto.textContent = "X: Error";
     xSentAuto.className = "neutral";
   }
 }
 
 // ────────────────────────────────────────────────
-// Combined Sentiment + Notification
+// Combined logic + notifications
 // ────────────────────────────────────────────────
-function updateCombinedDisplay(currentPrice = 0) {
-  const combinedScore = (lastNewsScore + lastXScore) / 2;
-  const combSent = getSentimentClass(combinedScore);
-  combinedSent.textContent = `Combined News+X Sentiment: ${combSent.text} (${combinedScore.toFixed(2)})`;
-  combinedSent.className = combSent.class;
+function updateCombinedDisplay(price = 0) {
+  const score = (lastNewsScore + lastXScore) / 2;
+  const s = getSentimentClass(score);
+  combinedSent.textContent = `Sentiment: ${s.text} (${score.toFixed(2)})`;
+  combinedSent.className = s.class;
 
-  let displayText = lastTechSig;
-  let displayClass = sigEl.className;
+  let txt = lastTechSig;
+  let cls = sigEl.className;
 
-  if (lastTechSig === "BUY" && combinedScore < -0.1) {
-    displayText += " (Bearish Warning)";
-    displayClass = "warning";
-  } else if (lastTechSig === "SELL" && combinedScore > 0.1) {
-    displayText += " (Bullish Warning)";
-    displayClass = "warning";
+  if (lastTechSig === "BUY" && score < -0.1) {
+    txt += " (Bearish warning)";
+    cls = "warning";
+  } else if (lastTechSig === "SELL" && score > 0.1) {
+    txt += " (Bullish warning)";
+    cls = "warning";
   }
 
-  sigEl.textContent = displayText;
-  sigEl.className = displayClass;
+  sigEl.textContent = txt;
+  sigEl.className = cls;
 
-  // Trigger notification on strong aligned signal
-  if (currentPrice > 0 && (lastTechSig === "BUY" || lastTechSig === "SELL")) {
-    const sentimentAligned =
-      (lastTechSig === "BUY"  && combinedScore >= -0.1) ||
-      (lastTechSig === "SELL" && combinedScore <=  0.1);
-
-    if (sentimentAligned) {
-      sendSignalNotification(lastTechSig, currentPrice, combinedScore);
-    }
+  // Notify on strong aligned signal
+  if (price > 0 && (lastTechSig === "BUY" || lastTechSig === "SELL")) {
+    const aligned = (lastTechSig === "BUY" && score >= -0.1) || (lastTechSig === "SELL" && score <= 0.1);
+    if (aligned) sendSignalNotification(lastTechSig, price, score);
   }
 }
 
@@ -491,14 +494,11 @@ function updateCombinedDisplay(currentPrice = 0) {
 // Start
 // ────────────────────────────────────────────────
 requestNotificationPermission();
-
 loadTVChart();
 fetchPrice();
 setInterval(fetchPrice, POLL_MS);
-
 fetchNews();
 setInterval(fetchNews, NEWS_POLL_MS);
-
 fetchXPosts();
 setInterval(fetchXPosts, 900000);
 </script>
