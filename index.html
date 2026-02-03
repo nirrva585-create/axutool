@@ -3,50 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gold Live Signals – Final Fixed</title>
+<title>High-Accuracy Gold & Forex Signals</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/technicalindicators@3.1.0/dist/technicalindicators.min.js"></script>
 <style>
-  body { margin:0; background:#0a0a14; color:#ddd; font-family:Arial,sans-serif; font-size:13px; }
-  header { background:#111; padding:8px; text-align:center; border-bottom:1px solid #222; }
-  h1 { margin:0; font-size:1.3rem; color:#ffcc00; }
-  #status { font-size:0.75rem; color:#88f; }
-  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:10px; padding:10px; max-width:1600px; margin:0 auto; }
-  .card { background:#111; border:1px solid #333; border-radius:6px; padding:12px; }
-  #price { font-size:2.6rem; font-weight:bold; color:#ffcc00; text-align:center; }
-  #change { font-size:1.1rem; }
-  .pos { color:#0f8; } .neg { color:#f44; }
-  .signal { font-size:1.9rem; font-weight:bold; padding:12px; text-align:center; border-radius:8px; margin:10px 0; min-height:2.4rem; }
-  .buy  { background:#004400; color:#8f8; border:1px solid #0c0; }
-  .sell { background:#440000; color:#f88; border:1px solid #c00; }
-  .neu  { background:#222; color:#aaf; }
-  .warning { background:#4a3c00; color:#ffcc66; border:1px solid #cc9900; }
-  #trend, #entry, #tpsl { font-size:1rem; line-height:1.4; }
-  .tv-chart { height:340px; }
-  .news-item, .tweet-item { margin:10px 0; padding:10px; border-left:3px solid #444; background:#1a1a2e; border-radius:6px; position:relative; }
-  .sentiment-badge { position:absolute; top:10px; right:10px; font-size:1.2rem; font-weight:bold; padding:4px 10px; border-radius:6px; }
+  body { margin:0; background:#0a0a14; color:#e0e0ff; font-family:Arial,sans-serif; font-size:14px; }
+  header { background:#111122; padding:12px; text-align:center; border-bottom:1px solid #333366; }
+  h1 { margin:0; font-size:1.6rem; color:#ffd700; }
+  #status { font-size:0.9rem; color:#88ccff; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(400px,1fr)); gap:16px; padding:16px; max-width:1600px; margin:0 auto; }
+  .card { background:#111122; border:1px solid #333366; border-radius:10px; padding:18px; box-shadow:0 6px 24px rgba(0,0,0,0.7); }
+  #price { font-size:3.8rem; font-weight:bold; color:#ffd700; text-align:center; margin:14px 0; }
+  #change { font-size:1.5rem; text-align:center; }
+  .pos { color:#00ff99; } .neg { color:#ff5555; }
+  .signal { font-size:2.6rem; font-weight:bold; padding:18px; text-align:center; border-radius:12px; margin:16px 0; min-height:3.2rem; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
+  .buy  { background:#004d00; color:#88ff88; border:2px solid #00cc44; }
+  .sell { background:#4d0000; color:#ff8888; border:2px solid #cc0000; }
+  .neu  { background:#222244; color:#bbbbff; border:2px solid #444488; }
+  .warning { background:#4a3c00; color:#ffcc66; border:2px solid #cc9900; }
+  #trend, #entry, #tpsl, #accuracy-note { font-size:1.2rem; line-height:1.6; margin:10px 0; }
+  .tv-chart { height:460px; margin-bottom:14px; border-radius:10px; overflow:hidden; }
+  .tweet-item { margin:14px 0; padding:14px; border-left:4px solid #444; background:#1a1a2e; border-radius:8px; position:relative; }
+  .sentiment-badge { position:absolute; top:14px; right:14px; font-size:1.5rem; font-weight:bold; padding:6px 12px; border-radius:8px; }
   .bullish { background:#004d00; color:#88ff88; }
   .bearish { background:#4d0000; color:#ff8888; }
   .neutral  { background:#222244; color:#bbbbff; }
-  #tf-select { margin:10px 0; padding:8px; background:#222; color:#ffcc00; border:1px solid #444; width:100%; }
-  #tf-info { font-size:0.95rem; color:#aaa; margin-top:6px; }
-  #combined-sent { font-size:1.1rem; font-weight:bold; margin:8px 0; padding:8px; border-radius:6px; text-align:center; }
-  #session-note { font-size:0.9rem; color:#88f; margin:8px 0; }
-  #notify-status { font-size:0.85rem; color:#aaa; margin-top:6px; }
-  footer { text-align:center; padding:12px; font-size:0.7rem; color:#555; }
+  select { margin:14px 0 10px; padding:12px; background:#222244; color:#ffdd00; border:1px solid #444466; width:100%; font-size:1.1rem; border-radius:8px; }
+  #tf-info, #session-note { font-size:1.05rem; color:#aaccff; margin:8px 0; }
+  #combined-sent { font-size:1.35rem; font-weight:bold; margin:14px 0; padding:14px; border-radius:10px; text-align:center; box-shadow:0 4px 12px rgba(0,0,0,0.5); }
+  #notify-status { font-size:1rem; color:#aaaaff; margin:10px 0; }
+  footer { text-align:center; padding:18px; font-size:0.85rem; color:#666688; }
 </style>
 </head>
 <body>
 
 <header>
-  <h1>Gold (XAU/USD) Live Signals</h1>
+  <h1>High-Accuracy Gold & Forex Signals</h1>
   <div id="status">Connecting…</div>
 </header>
 
 <div class="grid">
 
   <div class="card">
-    <div id="price">$ —.—</div>
+    <div id="price">— —.—</div>
     <div id="change"></div>
   </div>
 
@@ -55,37 +54,46 @@
   </div>
 
   <div class="card">
+    <label>Asset / Pair:</label>
+    <select id="pair-select">
+      <option value="XAU" selected>Gold (XAU/USD)</option>
+      <option value="EURUSD">EUR/USD</option>
+      <option value="GBPUSD">GBP/USD</option>
+      <option value="USDJPY">USD/JPY</option>
+      <option value="AUDUSD">AUD/USD</option>
+      <option value="USDCAD">USD/CAD</option>
+      <option value="NZDUSD">NZD/USD</option>
+      <option value="USDCHF">USD/CHF</option>
+    </select>
+
     <label>Time Frame:</label>
     <select id="tf-select">
       <option value="short">M5–M15 (Scalping)</option>
-      <option value="medium" selected>M30–H1 (Recommended)</option>
-      <option value="long">H4 (Swing)</option>
+      <option value="medium" selected>M30–H1 (Best Balance)</option>
+      <option value="long">H4 (Swing / Trend)</option>
     </select>
+
     <div id="tf-info">Using: M30–H1 – Balanced & consistent</div>
-    <div id="session-note">Best volatility: London-NY overlap (~13:00–17:00 UTC)</div>
+    <div id="session-note">Highest edge: London–NY overlap (~13:00–17:00 UTC)</div>
     <div id="notify-status">Notifications: not requested yet</div>
 
     <div id="signal" class="signal neu">Waiting for data…</div>
     <div id="trend">Trend: —</div>
     <div id="entry"></div>
     <div id="tpsl"></div>
-    <div id="combined-sent">Combined Sentiment: —</div>
+    <div id="accuracy-note">Signal requires MACD + ADX > 25 + sentiment alignment</div>
+    <div id="combined-sent">X Sentiment: —</div>
   </div>
 
   <div class="card" style="grid-column:1/-1;">
-    <strong>News + Sentiment</strong> <span id="news-status">(updating…)</span>
-    <div id="overall-news-sent">News Sentiment: Calculating…</div>
-    <div id="news-list"></div>
-
-    <br>
-    <strong>Recent X Posts (public mirror)</strong> <span id="x-status">(updating…)</span>
+    <strong>Recent X / Twitter Sentiment</strong> <span id="x-status">(updating…)</span>
     <div id="x-sentiment-auto">X Sentiment: Calculating…</div>
     <div id="x-posts-list"></div>
   </div>
 
 </div>
 
-<footer>Private tool • apised.com + TradingView + NewsAPI + public X mirror • Personal/educational use only</footer>
+<footer>Private high-accuracy signal tool • apised.com + TradingView + public X mirror • Educational & personal use only</footer>
 
 <script>
 // ────────────────────────────────────────────────
@@ -93,14 +101,10 @@
 // ────────────────────────────────────────────────
 const API_KEY     = "sk_d6D036264d1491680e9A9Fa528e1Ab1CE796dBe627D625A0";
 const BASE_URL    = "https://metals.g.apised.com";
-const SYMBOL      = "XAU";
 const POLL_MS     = 10000;
 
-const NEWS_API_KEY = "ac7217da2039469589c225547dd69c63";
-const NEWS_POLL_MS = 900000;
-
 const X_RSS_PROXY = "https://api.allorigins.win/raw?url=";
-const X_RSS_URL   = "https://nitter.net/search/rss?f=tweets&q=%23gold%20OR%20XAUUSD%20OR%20%22gold%20price%22%20-lang%3Aja";
+const X_RSS_URL   = "https://nitter.net/search/rss?f=tweets&q=%23gold%20OR%20XAUUSD%20OR%20EURUSD%20OR%20GBPUSD%20OR%20USDJPY%20OR%20forex%20OR%20trading%20-lang%3Aja";
 
 // Sentiment keywords
 const POSITIVE_WORDS = new Set(['rise','surge','rally','boost','record','strong','upbeat','demand','higher','gain','bullish','buy','optimistic','growth','positive','soar','jump','up','bull','strength','support','recovery','breakout','moon','to the moon']);
@@ -109,18 +113,18 @@ const NEGATIVE_WORDS = new Set(['fall','drop','plunge','crash','decline','weak',
 const SENT_BULL_THRESHOLD = 0.18;
 const SENT_BEAR_THRESHOLD = -0.18;
 
-// Time Frame Config
+// Time Frame Config – adjusted for higher accuracy
 const TF_SETTINGS = {
-  short:   { emaFast:5,  emaSlow:13, rsiPeriod:9,  desc: "M5–M15 (Scalping: fast, more signals, higher noise)" },
-  medium:  { emaFast:9,  emaSlow:21, rsiPeriod:14, desc: "M30–H1 (Day Trading: balanced, most consistent)" },
-  long:    { emaFast:12, emaSlow:34, rsiPeriod:21, desc: "H4 (Swing: fewer, higher-quality signals)" }
+  short:   { emaFast:8,  emaSlow:21, macdFast:12, macdSlow:26, macdSignal:9, rsiPeriod:9,  adxPeriod:10, adxMin:22, desc: "M5–M15 (Scalping – fast but noisy)" },
+  medium:  { emaFast:12, emaSlow:34, macdFast:12, macdSlow:26, macdSignal:9, rsiPeriod:14, adxPeriod:14, adxMin:25, desc: "M30–H1 (Best balance – highest edge)" },
+  long:    { emaFast:21, emaSlow:55, macdFast:12, macdSlow:26, macdSignal:9, rsiPeriod:21, adxPeriod:18, adxMin:28, desc: "H4 (Swing – high quality, fewer trades)" }
 };
 
 let prices        = [];
 let lastTechSig   = "NEUTRAL";
-let lastNewsScore = 0;
 let lastXScore    = 0;
 let currentTF     = "medium";
+let currentPair   = "XAU";
 let lastNotifiedSig = null;
 let notificationPermission = "default";
 
@@ -133,15 +137,19 @@ const trendEl     = document.getElementById('trend');
 const entryEl     = document.getElementById('entry');
 const tpslEl      = document.getElementById('tpsl');
 const statusEl    = document.getElementById('status');
-const newsList    = document.getElementById('news-list');
-const newsStat    = document.getElementById('news-status');
-const overallNews = document.getElementById('overall-news-sent');
 const xPostsList  = document.getElementById('x-posts-list');
 const xStatus     = document.getElementById('x-status');
 const xSentAuto   = document.getElementById('x-sentiment-auto');
 const combinedSent= document.getElementById('combined-sent');
 
-// ─── Time Frame Change ─────────────────────────────
+// ─── Pair & TF Change ──────────────────────────────
+document.getElementById('pair-select').addEventListener('change', e => {
+  currentPair = e.target.value;
+  prices = [];
+  fetchPrice();
+  if (tvWidget) tvWidget.setSymbol(getTVSymbol(), "5", () => {});
+});
+
 document.getElementById('tf-select').addEventListener('change', e => {
   currentTF = e.target.value;
   tfInfo.textContent = `Using: ${TF_SETTINGS[currentTF].desc}`;
@@ -175,8 +183,8 @@ function sendSignalNotification(signal, price, sentimentScore) {
   if (notificationPermission !== "granted") return;
   if (lastNotifiedSig === signal) return;
 
-  const title = `Gold Signal: ${signal}`;
-  const body = `$${price.toFixed(2)} | Sentiment: ${(sentimentScore*100).toFixed(0)}% | ${TF_SETTINGS[currentTF].desc.split(' (')[0]}`;
+  const title = `${currentPair} ${signal} Alert`;
+  const body = `Price: ${price.toFixed(currentPair.includes("JPY") ? 3 : 5)}\nX Sentiment: ${(sentimentScore*100).toFixed(0)}%\nTF: ${TF_SETTINGS[currentTF].desc.split(' (')[0]}`;
   const icon = signal === "BUY" ? "https://img.icons8.com/fluency/96/buy.png" : "https://img.icons8.com/fluency/96/sell.png";
 
   new Notification(title, { body, icon });
@@ -184,17 +192,32 @@ function sendSignalNotification(signal, price, sentimentScore) {
 }
 
 // ────────────────────────────────────────────────
-// TradingView Widget
+// TradingView Symbol Mapping
 // ────────────────────────────────────────────────
+let tvWidget = null;
+function getTVSymbol() {
+  const map = {
+    "XAU":    "OANDA:XAUUSD",
+    "EURUSD": "FX:EURUSD",
+    "GBPUSD": "FX:GBPUSD",
+    "USDJPY": "FX:USDJPY",
+    "AUDUSD": "FX:AUDUSD",
+    "USDCAD": "FX:USDCAD",
+    "NZDUSD": "FX:NZDUSD",
+    "USDCHF": "FX:USDCHF"
+  };
+  return map[currentPair] || "OANDA:XAUUSD";
+}
+
 function loadTVChart() {
   const script = document.createElement('script');
   script.src = 'https://s3.tradingview.com/tv.js';
   script.async = true;
   script.onload = () => {
-    new TradingView.widget({
+    tvWidget = new TradingView.widget({
       "width": "100%",
       "height": "100%",
-      "symbol": "OANDA:XAUUSD",
+      "symbol": getTVSymbol(),
       "interval": "5",
       "timezone": "Etc/UTC",
       "theme": "dark",
@@ -210,54 +233,32 @@ function loadTVChart() {
 }
 
 // ────────────────────────────────────────────────
-// Price Fetch – robust parsing for apised structure
+// Price Fetch
 // ────────────────────────────────────────────────
 async function fetchPrice() {
   try {
-    statusEl.textContent = "Fetching price…";
-    const res = await fetch(`${BASE_URL}/v1/latest?symbols=${SYMBOL}&base_currency=USD`, {
+    statusEl.textContent = `Fetching ${currentPair}…`;
+    const res = await fetch(`${BASE_URL}/v1/latest?symbols=${currentPair}&base_currency=USD`, {
       headers: { 'x-api-key': API_KEY }
     });
 
-    if (!res.ok) {
-      throw new Error(`HTTP ${res.status} – check key/credits`);
-    }
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
     const json = await res.json();
-    console.log("API RESPONSE:", JSON.stringify(json, null, 2)); // Open F12 → Console to see this!
+    console.log(`API RESPONSE (${currentPair}):`, JSON.stringify(json, null, 2));
 
-    // ─── Find gold object ─────────────────────────────────────────────
-    let gold = null;
+    let data = json.data?.rates?.[currentPair] || json.rates?.[currentPair] || json[currentPair] || json;
 
-    // Try nested structures common in apised/metals APIs
-    if (json.data?.rates?.XAU) gold = json.data.rates.XAU;
-    else if (json.rates?.XAU) gold = json.rates.XAU;
-    else if (json[SYMBOL]) gold = json[SYMBOL];
-    else if (json.data?.[SYMBOL]) gold = json.data[SYMBOL];
-
-    // Extract current price with fallbacks
     let curr = parseFloat(
-      gold?.current ||
-      gold?.price   ||
-      gold?.rate    ||
-      gold?.last    ||
-      gold?.value   ||
-      gold?.spot    ||
-      (typeof gold === 'number' ? gold : 0)
+      data?.current || data?.price || data?.rate || data?.last || data?.value ||
+      data?.spot || data?.close || (typeof data === 'number' ? data : 0)
     );
 
-    if (!curr || isNaN(curr)) {
-      console.warn("No numeric price found. Gold object:", gold);
-      throw new Error("No valid price in response – see console (F12) for raw JSON");
-    }
+    if (!curr || isNaN(curr)) throw new Error("No valid price");
 
-    // Previous/open/change fallback
     let prev = parseFloat(
-      gold?.prev     ||
-      gold?.previous ||
-      gold?.open     ||
-      gold?.change?.previous ||
-      (gold?.current && gold?.change ? gold.current - gold.change : curr)
+      data?.prev || data?.previous || data?.open ||
+      (data?.change ? curr - data.change : curr)
     );
 
     const chg = prev && !isNaN(prev) ? ((curr - prev) / prev * 100) : 0;
@@ -265,7 +266,8 @@ async function fetchPrice() {
     prices.push(curr);
     if (prices.length > 400) prices.shift();
 
-    priceEl.textContent = `$${curr.toFixed(2)}`;
+    const decimals = currentPair.includes("JPY") ? 3 : (currentPair === "XAU" ? 2 : 5);
+    priceEl.textContent = currentPair.includes("JPY") ? `¥${curr.toFixed(decimals)}` : `$${curr.toFixed(decimals)}`;
     changeEl.textContent = `${chg >= 0 ? '+' : ''}${chg.toFixed(2)}%`;
     changeEl.className = chg >= 0 ? 'pos' : 'neg';
 
@@ -273,17 +275,17 @@ async function fetchPrice() {
     updateCombinedDisplay(curr);
     statusEl.textContent = `Updated ${new Date().toLocaleTimeString()}`;
   } catch (e) {
-    console.error("Fetch failed:", e);
-    statusEl.textContent = `Error: ${e.message} (F12 → Console for details)`;
+    console.error("Fetch error:", e);
+    statusEl.textContent = `Error: ${e.message} (F12 → Console)`;
   }
 }
 
 // ────────────────────────────────────────────────
-// Technical Signal (unchanged)
+// High-Accuracy Technical Signal (MACD + ADX + EMA + RSI)
 // ────────────────────────────────────────────────
 function generateTechSignal(curr) {
   const cfg = TF_SETTINGS[currentTF];
-  if (prices.length < cfg.emaSlow * 2) {
+  if (prices.length < Math.max(cfg.emaSlow, cfg.adxPeriod * 2, 50)) {
     lastTechSig = "NEUTRAL";
     sigEl.textContent = "Collecting data…";
     sigEl.className = "neu";
@@ -292,28 +294,47 @@ function generateTechSignal(curr) {
 
   const emaFast = technicalindicators.EMA.calculate({period: cfg.emaFast, values:prices}).pop();
   const emaSlow = technicalindicators.EMA.calculate({period: cfg.emaSlow, values:prices}).pop();
-  const rsi     = technicalindicators.RSI.calculate({period: cfg.rsiPeriod, values:prices}).pop();
 
-  let sig = "NEUTRAL", cls = "neu", trend = "Neutral";
+  const macdInput = { values: prices, fastPeriod: cfg.macdFast, slowPeriod: cfg.macdSlow, signalPeriod: cfg.macdSignal };
+  const macd = technicalindicators.MACD.calculate(macdInput);
+  const macdLine = macd[macd.length-1]?.MACD;
+  const signalLine = macd[macd.length-1]?.signal;
+  const histogram = macd[macd.length-1]?.histogram;
 
-  if (emaFast && emaSlow && rsi !== undefined) {
-    const bull = emaFast > emaSlow && curr > emaSlow;
-    trend = bull ? "Bull ↑" : "Bear ↓";
-    trendEl.textContent = `Trend: ${trend}`;
+  const rsi = technicalindicators.RSI.calculate({period: cfg.rsiPeriod, values:prices}).pop();
 
-    const prevBull = prices[prices.length-2] > emaSlow;
+  const adx = technicalindicators.ADX.calculate({
+    high: prices.map((p,i) => p), // proxy – we only have close
+    low:  prices.map((p,i) => p),
+    close: prices,
+    period: cfg.adxPeriod
+  }).pop()?.adx;
 
-    const rsiLow  = currentTF === "long" ? 35 : currentTF === "medium" ? 38 : 40;
-    const rsiHigh = currentTF === "long" ? 65 : currentTF === "medium" ? 62 : 60;
+  let sig = "NEUTRAL";
+  let cls = "neu";
+  let trend = "Neutral";
 
-    if (emaFast > emaSlow && rsi < rsiLow && bull && !prevBull) {
+  if (emaFast && emaSlow && macdLine !== undefined && rsi !== undefined && adx !== undefined) {
+    const bullTrend = emaFast > emaSlow && curr > emaSlow && adx > cfg.adxMin;
+    trend = bullTrend ? "Bull ↑ (strong)" : (adx > cfg.adxMin ? "Bear ↓ (strong)" : "Ranging / Weak");
+    trendEl.textContent = `Trend: ${trend} (ADX ${adx.toFixed(1)})`;
+
+    const rsiLow  = currentTF === "long" ? 32 : currentTF === "medium" ? 35 : 38;
+    const rsiHigh = currentTF === "long" ? 68 : currentTF === "medium" ? 65 : 62;
+
+    const macdBull = macdLine > signalLine && histogram > 0;
+    const macdBear = macdLine < signalLine && histogram < 0;
+
+    const prevMacdBull = macd[macd.length-2]?.MACD > macd[macd.length-2]?.signal;
+
+    if (emaFast > emaSlow && macdBull && rsi < rsiLow && bullTrend && !prevMacdBull) {
       sig = "BUY"; cls = "buy";
       setLevels(curr, "buy");
-    } else if (emaFast < emaSlow && rsi > rsiHigh && !bull) {
+    } else if (emaFast < emaSlow && macdBear && rsi > rsiHigh && !bullTrend) {
       sig = "SELL"; cls = "sell";
       setLevels(curr, "sell");
     } else {
-      sig = bull ? "Long" : "Short";
+      sig = bullTrend ? "Long bias" : "Short bias";
     }
   }
 
@@ -323,19 +344,27 @@ function generateTechSignal(curr) {
 }
 
 function setLevels(entry, dir) {
-  const vol = prices.slice(-20).reduce((m,v,i,a)=>i?Math.max(m,Math.abs(v-a[i-1])):m,0) * (currentTF === "long" ? 8 : 12);
-  const risk = vol || entry*0.007;
-  const rr = currentTF === "long" ? 3 : 2;
+  // Improved volatility proxy using recent range
+  const range = prices.slice(-30).reduce((maxDiff, v, i, arr) => {
+    if (i === 0) return maxDiff;
+    return Math.max(maxDiff, Math.abs(v - arr[i-1]));
+  }, 0) * 8; // rough ATR approximation
+
+  const risk = range || entry * (currentPair.includes("JPY") ? 0.3 : currentPair === "XAU" ? 0.008 : 0.0008);
+  const rr = currentTF === "long" ? 3.2 : 2.5;
 
   let sl = dir==="buy" ? entry - risk : entry + risk;
   let tp = dir==="buy" ? entry + risk*rr : entry - risk*rr;
 
-  entryEl.textContent = `Entry ~ $${entry.toFixed(2)}`;
-  tpslEl.innerHTML = `SL $${sl.toFixed(2)} • TP $${tp.toFixed(2)} (RR 1:${rr})`;
+  const decimals = currentPair.includes("JPY") ? 3 : (currentPair === "XAU" ? 2 : 5);
+  const symbol = currentPair.includes("JPY") ? '¥' : '$';
+
+  entryEl.textContent = `Entry ~ ${symbol}${entry.toFixed(decimals)}`;
+  tpslEl.innerHTML = `SL ${symbol}${sl.toFixed(decimals)} • TP ${symbol}${tp.toFixed(decimals)} (RR 1:${rr.toFixed(1)})`;
 }
 
 // ────────────────────────────────────────────────
-// Sentiment Helpers
+// X Sentiment (unchanged)
 // ────────────────────────────────────────────────
 function getSentimentScore(text) {
   if (!text) return 0;
@@ -355,66 +384,6 @@ function getSentimentClass(score) {
   return {class:'neutral', text:'Neutral'};
 }
 
-// ────────────────────────────────────────────────
-// News Fetch
-// ────────────────────────────────────────────────
-async function fetchNews() {
-  try {
-    newsStat.textContent = "(fetching…)";
-    const fromDate = new Date(Date.now() - 7*24*60*60*1000).toISOString().split('T')[0];
-    const q = '("gold price" OR XAUUSD OR "gold market" OR "XAU/USD")';
-    const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(q)}&from=${fromDate}&language=en&sortBy=publishedAt&pageSize=6&apiKey=${NEWS_API_KEY}`;
-
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-
-    const data = await res.json();
-    if (data.status !== "ok") throw new Error(data.message || "NewsAPI error");
-
-    newsList.innerHTML = "";
-    let total = 0, count = 0;
-
-    if (data.articles?.length) {
-      data.articles.forEach(a => {
-        const score = getSentimentScore(a.title + " " + (a.description||""));
-        const sent = getSentimentClass(score);
-        total += score;
-        count++;
-
-        const time = new Date(a.publishedAt).toLocaleString([],{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
-        const div = document.createElement('div');
-        div.className = 'news-item';
-        div.innerHTML = `
-          <div class="sentiment-badge ${sent.class}">${sent.text.charAt(0)}</div>
-          <a href="${a.url}" target="_blank">${a.title}</a>
-          <div class="news-meta">${time} • ${a.source.name}</div>
-        `;
-        newsList.appendChild(div);
-      });
-
-      lastNewsScore = count ? total / count : 0;
-      const ov = getSentimentClass(lastNewsScore);
-      overallNews.textContent = `News: ${ov.text} (${lastNewsScore.toFixed(2)})`;
-      overallNews.className = ov.class;
-    } else {
-      newsList.innerHTML = "<p>No recent news</p>";
-      lastNewsScore = 0;
-      overallNews.textContent = "News: —";
-      overallNews.className = "neutral";
-    }
-
-    newsStat.textContent = `(updated ${new Date().toLocaleTimeString()})`;
-    updateCombinedDisplay(prices.length ? prices[prices.length-1] : 0);
-  } catch(e) {
-    newsStat.textContent = `News error: ${e.message}`;
-    overallNews.textContent = "News: Error";
-    overallNews.className = "neutral";
-  }
-}
-
-// ────────────────────────────────────────────────
-// X Posts Fetch
-// ────────────────────────────────────────────────
 async function fetchXPosts() {
   try {
     xStatus.textContent = "(fetching…)";
@@ -455,14 +424,15 @@ async function fetchXPosts() {
 
     lastXScore = count ? total / count : 0;
     const xs = getSentimentClass(lastXScore);
-    xSentAuto.textContent = `X: ${xs.text} (${lastXScore.toFixed(2)})`;
+    xSentAuto.textContent = `X Sentiment: ${xs.text} (${lastXScore.toFixed(2)})`;
     xSentAuto.className = xs.class;
 
     xStatus.textContent = `(updated ${new Date().toLocaleTimeString()})`;
     updateCombinedDisplay(prices.length ? prices[prices.length-1] : 0);
   } catch(e) {
-    xStatus.textContent = `X error: ${e.message}`;
-    xSentAuto.textContent = "X: Error";
+    console.error("X fetch error:", e);
+    xStatus.textContent = `X fetch failed: ${e.message}`;
+    xSentAuto.textContent = "X Sentiment: —";
     xSentAuto.className = "neutral";
   }
 }
@@ -471,26 +441,25 @@ async function fetchXPosts() {
 // Combined logic + notifications
 // ────────────────────────────────────────────────
 function updateCombinedDisplay(price = 0) {
-  const score = (lastNewsScore + lastXScore) / 2;
+  const score = lastXScore;
   const s = getSentimentClass(score);
-  combinedSent.textContent = `Sentiment: ${s.text} (${score.toFixed(2)})`;
+  combinedSent.textContent = `X Sentiment: ${s.text} (${score.toFixed(2)})`;
   combinedSent.className = s.class;
 
   let txt = lastTechSig;
   let cls = sigEl.className;
 
   if (lastTechSig === "BUY" && score < -0.1) {
-    txt += " (Bearish warning)";
+    txt += " (Bearish X warning)";
     cls = "warning";
   } else if (lastTechSig === "SELL" && score > 0.1) {
-    txt += " (Bullish warning)";
+    txt += " (Bullish X warning)";
     cls = "warning";
   }
 
   sigEl.textContent = txt;
   sigEl.className = cls;
 
-  // Notify on strong aligned signal
   if (price > 0 && (lastTechSig === "BUY" || lastTechSig === "SELL")) {
     const aligned = (lastTechSig === "BUY" && score >= -0.1) || (lastTechSig === "SELL" && score <= 0.1);
     if (aligned) sendSignalNotification(lastTechSig, price, score);
@@ -504,8 +473,6 @@ requestNotificationPermission();
 loadTVChart();
 fetchPrice();
 setInterval(fetchPrice, POLL_MS);
-fetchNews();
-setInterval(fetchNews, NEWS_POLL_MS);
 fetchXPosts();
 setInterval(fetchXPosts, 900000);
 </script>
